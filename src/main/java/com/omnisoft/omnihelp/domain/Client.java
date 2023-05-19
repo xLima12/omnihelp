@@ -3,6 +3,7 @@ package com.omnisoft.omnihelp.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.omnisoft.omnihelp.domain.enums.Profile;
 
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ public class Client extends Person {
     private static final long serialVersionUID = 1L;
     
     // Lista de chamados
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Called> called = new ArrayList<>();
 
