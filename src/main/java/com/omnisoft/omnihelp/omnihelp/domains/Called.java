@@ -1,24 +1,44 @@
 package com.omnisoft.omnihelp.omnihelp.domains;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.omnisoft.omnihelp.omnihelp.domains.enums.Priority;
 import com.omnisoft.omnihelp.omnihelp.domains.enums.Status;
 
-public class Called {
-    
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Called implements Serializable {
+    private  static final long serialVersionUID  = 1L;
+
     // Atributos classe chamado
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate openingDate = LocalDate.now();
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate closingDate;
+
     private Priority priority;
     private Status status;
     private String title;
     private String comments;
 
     // Atributo classe técnico
+    @ManyToOne
+    @JoinColumn(name = "technician_id")
     private Technician technician;
     // Atributo classe cliente
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
     
     // Constructors
