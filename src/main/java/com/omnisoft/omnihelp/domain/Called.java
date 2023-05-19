@@ -1,11 +1,11 @@
-package com.omnisoft.omnihelp.omnihelp.domains;
+package com.omnisoft.omnihelp.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.omnisoft.omnihelp.omnihelp.domains.enums.Priority;
-import com.omnisoft.omnihelp.omnihelp.domains.enums.Status;
+import com.omnisoft.omnihelp.domain.enums.Priority;
+import com.omnisoft.omnihelp.domain.enums.Status;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

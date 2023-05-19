@@ -1,4 +1,4 @@
-package com.omnisoft.omnihelp.omnihelp.domains;
+package com.omnisoft.omnihelp.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.omnisoft.omnihelp.omnihelp.domains.enums.Profile;
+import com.omnisoft.omnihelp.domain.enums.Profile;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;

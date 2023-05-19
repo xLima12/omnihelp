@@ -1,4 +1,4 @@
-package com.omnisoft.omnihelp.omnihelp;
+package com.omnisoft.omnihelp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,30 +1,30 @@
-package com.omnisoft.omnihelp.omnihelp.domains;
+package com.omnisoft.omnihelp.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.omnisoft.omnihelp.omnihelp.domains.enums.Profile;
+import com.omnisoft.omnihelp.domain.enums.Profile;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Client extends Person {
+public class Technician extends Person {
     private static final long serialVersionUID = 1L;
-    
+
     // Lista de chamados
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "technician")
     private List<Called> called = new ArrayList<>();
 
     // Constructors
-    public Client() {
+    public Technician(List<Called> called) {
         super();
-        addProfile(Profile.CLIENT);
+        addProfile(Profile.TECHNICIAN);
     }
 
-    public Client(Integer id, String name, String cpf, String email, String password) {
+    public Technician(Integer id, String name, String cpf, String email, String password, List<Called> called) {
         super(id, name, cpf, email, password);
-        addProfile(Profile.CLIENT);
+        addProfile(Profile.TECHNICIAN);
     }
 
     // Metodos acessores
@@ -34,8 +34,6 @@ public class Client extends Person {
 
     public void setCalled(List<Called> called) {
         this.called = called;
-    }
-
-    
+    }    
 
 }

@@ -1,16 +1,16 @@
-package com.omnisoft.omnihelp.omnihelp.domains.enums;
+package com.omnisoft.omnihelp.domain.enums;
 
-public enum Status {
+public enum Profile {
 
-    // Tipos de status
-    OPEN(0, "OPEN"), PROGESS(1, "PROGESS"), CLOSED(2, "CLOSED");
+    // Tipos de perfis
+    ADMIN(0, "ROLE_ADMIN"), CLIENT(1, "ROLE_CLIENT"), TECHNICIAN(2, "ROLE_TECHNICIAN");
     
-    // Variáveis de código e descrição do status do chamado.
+    // Variáveis de código e descrição do perfil de usuário.
     private Integer code;
     private String description;
 
-    // Constructor Status
-    private Status(Integer cod, String desc) {
+    // Constructor profile
+    private Profile(Integer cod, String desc) {
         this.code = cod;
         this.description = desc;
     }
@@ -32,23 +32,23 @@ public enum Status {
         this.description = description;
     }
 
-    // Metodo Status
-    public static Status toEnum(Integer cod) {
+    // Metodo do perfil
+    public static Profile toEnum(Integer cod) {
         // Verifica se o código está nulo
         if(cod == null) {
             return null;
         }
         
-        // Percorre cada um dos status
-        for(Status x: Status.values()) {
-            // Verifica se o status informado é existente
+        // Percorre cada um dos perfis
+        for(Profile x: Profile.values()) {
+            // Verifica se o perfil informado é existente
             if(cod.equals(x.getCode())) {
                 return x;
             }
         }
 
-        // Mensagem de erro caso seja informado um status inválido
-        throw new IllegalArgumentException("Status invalid!");
+        // Mensagem de erro caso seja informado um perfil inválido
+        throw new IllegalArgumentException("Profile invalid!");
 
     }
 

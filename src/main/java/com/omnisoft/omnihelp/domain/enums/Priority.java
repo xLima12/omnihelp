@@ -1,16 +1,16 @@
-package com.omnisoft.omnihelp.omnihelp.domains.enums;
+package com.omnisoft.omnihelp.domain.enums;
 
-public enum Profile {
+public enum Priority {
 
-    // Tipos de perfis
-    ADMIN(0, "ROLE_ADMIN"), CLIENT(1, "ROLE_CLIENT"), TECHNICIAN(2, "ROLE_TECHNICIAN");
+    // Tipos de prioridade
+    LOW(0, "LOW"), MEDIUM(1, "MEDIUM"), HIGH(2, "HIGH");
     
-    // Variáveis de código e descrição do perfil de usuário.
+    // Variáveis de código e descrição da prioridade do chamado.
     private Integer code;
     private String description;
 
-    // Constructor profile
-    private Profile(Integer cod, String desc) {
+    // Constructor Priority
+    private Priority(Integer cod, String desc) {
         this.code = cod;
         this.description = desc;
     }
@@ -32,23 +32,23 @@ public enum Profile {
         this.description = description;
     }
 
-    // Metodo do perfil
-    public static Profile toEnum(Integer cod) {
+    // Metodo Priority
+    public static Priority toEnum(Integer cod) {
         // Verifica se o código está nulo
         if(cod == null) {
             return null;
         }
         
-        // Percorre cada um dos perfis
-        for(Profile x: Profile.values()) {
-            // Verifica se o perfil informado é existente
+        // Percorre cada um dos status
+        for(Priority x: Priority.values()) {
+            // Verifica se a prioridade informada é existente
             if(cod.equals(x.getCode())) {
                 return x;
             }
         }
 
-        // Mensagem de erro caso seja informado um perfil inválido
-        throw new IllegalArgumentException("Profile invalid!");
+        // Mensagem de erro caso seja informado uma prioridade inválida
+        throw new IllegalArgumentException("Priority invalid!");
 
     }
 

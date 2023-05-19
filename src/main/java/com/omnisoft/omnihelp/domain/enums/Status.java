@@ -1,16 +1,16 @@
-package com.omnisoft.omnihelp.omnihelp.domains.enums;
+package com.omnisoft.omnihelp.domain.enums;
 
-public enum Priority {
+public enum Status {
 
-    // Tipos de prioridade
-    LOW(0, "LOW"), MEDIUM(1, "MEDIUM"), HIGH(2, "HIGH");
+    // Tipos de status
+    OPEN(0, "OPEN"), PROGESS(1, "PROGESS"), CLOSED(2, "CLOSED");
     
-    // Variáveis de código e descrição da prioridade do chamado.
+    // Variáveis de código e descrição do status do chamado.
     private Integer code;
     private String description;
 
-    // Constructor Priority
-    private Priority(Integer cod, String desc) {
+    // Constructor Status
+    private Status(Integer cod, String desc) {
         this.code = cod;
         this.description = desc;
     }
@@ -32,23 +32,23 @@ public enum Priority {
         this.description = description;
     }
 
-    // Metodo Priority
-    public static Priority toEnum(Integer cod) {
+    // Metodo Status
+    public static Status toEnum(Integer cod) {
         // Verifica se o código está nulo
         if(cod == null) {
             return null;
         }
         
         // Percorre cada um dos status
-        for(Priority x: Priority.values()) {
-            // Verifica se a prioridade informada é existente
+        for(Status x: Status.values()) {
+            // Verifica se o status informado é existente
             if(cod.equals(x.getCode())) {
                 return x;
             }
         }
 
-        // Mensagem de erro caso seja informado uma prioridade inválida
-        throw new IllegalArgumentException("Priority invalid!");
+        // Mensagem de erro caso seja informado um status inválido
+        throw new IllegalArgumentException("Status invalid!");
 
     }
 
