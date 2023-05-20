@@ -18,6 +18,8 @@ import com.omnisoft.omnihelp.domain.Technician;
 import com.omnisoft.omnihelp.domain.dtos.TechnicianDTO;
 import com.omnisoft.omnihelp.services.TechnicianService;
 
+import jakarta.validation.Valid;
+
 // EndPoint para técnicos
 @RestController
 @RequestMapping(value = "/technician")
@@ -45,7 +47,7 @@ public class TechnicianResource {
 
     // Metodo Post para criar um novo técnico
     @PostMapping
-    public ResponseEntity<TechnicianDTO> create(@RequestBody TechnicianDTO objDTO) {
+    public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO objDTO) {
         Technician newObj = service.create(objDTO);
         // Pega a uri com o novo id do novo técnico
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
