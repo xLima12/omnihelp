@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.omnisoft.omnihelp.domain.Technician;
+import com.omnisoft.omnihelp.domain.dtos.TechnicianDTO;
 import com.omnisoft.omnihelp.repositories.TechnicianRepository;
 import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
@@ -24,6 +25,13 @@ public class TechnicianService {
     // Metodo de buscar todos os Tecnicos
     public List<Technician> findAll() {
         return repository.findAll();
+    }
+
+    // Metodo para criação de um novo técnico
+    public Technician create(TechnicianDTO objDTO) {
+        objDTO.setId(null);
+        Technician newObj = new Technician(objDTO);
+        return repository.save(newObj);
     }
 
 }

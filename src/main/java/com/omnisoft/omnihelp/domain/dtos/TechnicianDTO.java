@@ -26,6 +26,7 @@ public class TechnicianDTO implements Serializable {
     // Constructors
     public TechnicianDTO() {
         super();
+        addProfile(Profile.TECHNICIAN);
     }
 
     public TechnicianDTO(Technician obj) {
@@ -36,6 +37,7 @@ public class TechnicianDTO implements Serializable {
         this.password = obj.getPassword();
         this.profiles = obj.getProfiles().stream().map(p -> p.getCode()).collect(Collectors.toSet());
         this.createDate = obj.getCreateDate();
+        addProfile(Profile.TECHNICIAN);
     }
 
     // Metodos acessores
