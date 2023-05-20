@@ -14,6 +14,8 @@ import com.omnisoft.omnihelp.repositories.TechnicianRepository;
 import com.omnisoft.omnihelp.services.exceptions.DataIntegrityViolationException;
 import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TechnicianService {
     @Autowired
@@ -38,6 +40,15 @@ public class TechnicianService {
         validCpfAndEmail(objDTO);
         Technician newObj = new Technician(objDTO);
         return repository.save(newObj);
+    }
+
+    // Metodo para atualizção de um técnico
+    public Technician update(Integer id, @Valid TechnicianDTO objDTO) {
+        objDTO.setId(id);
+        Technician oldObj = findById(id);
+        validCpfAndEmail(objDTO);
+        oldObj = new Technician(objDTO);
+        return repository.save(oldObj);
     }
 
     // Metodo para verificação de email e cpf existente

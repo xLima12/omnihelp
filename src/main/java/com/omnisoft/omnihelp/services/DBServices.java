@@ -26,7 +26,7 @@ public class DBServices {
 	private CalledRespository calledRepository;
 
     public void instanceDB() {
-        Technician tec1 = new Technician(null, "Valdir Cezar", "42238858861", "teste@teste.com", "123");
+        Technician tec1 = new Technician(null, "Valdir Cezar", "164.132.860-67", "teste@teste.com", "123");
 		tec1.addProfile(Profile.ADMIN);
 
 		Client cli1 = new Client(null, "Felipe Lima", "42625330856", "felipe@felipe.com", "123");
