@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.omnisoft.omnihelp.domain.Technician;
 import com.omnisoft.omnihelp.repositories.TechnicianRepository;
+import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TechnicianService {
@@ -16,7 +17,7 @@ public class TechnicianService {
     // Metodo de busca por id
     public Technician findById(Integer id) {
         Optional<Technician> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id));
     }
 
 }
