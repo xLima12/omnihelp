@@ -1,5 +1,8 @@
 package com.omnisoft.omnihelp.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,17 @@ public class TechnicianResource {
     public ResponseEntity<TechnicianDTO> findById(@PathVariable Integer id) {
         Technician obj = service.findById(id);
         return ResponseEntity.ok().body(new TechnicianDTO(obj));
+    }
+
+    // Metodo Get para trazer todos os técnicos
+    @GetMapping
+    public ResponseEntity<List<TechnicianDTO>> findAll() {
+        // Cria lista de técnicos
+        List<Technician> list = service.findAll();
+        // Converte a lista de técnicos em listaDTO
+        List<TechnicianDTO> listDTO = list.stream().map(obj -> new TechnicianDTO(obj)).collect(Collectors.toList());
+        // Retorna listaDTO
+        return ResponseEntity.ok().body(listDTO);
     }
 
 }

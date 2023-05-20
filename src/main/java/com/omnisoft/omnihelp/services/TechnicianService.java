@@ -1,5 +1,6 @@
 package com.omnisoft.omnihelp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class TechnicianService {
     public Technician findById(Integer id) {
         Optional<Technician> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id));
+    }
+
+    // Metodo de buscar todos os Tecnicos
+    public List<Technician> findAll() {
+        return repository.findAll();
     }
 
 }
