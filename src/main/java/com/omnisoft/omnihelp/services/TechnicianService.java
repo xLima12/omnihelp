@@ -51,6 +51,15 @@ public class TechnicianService {
         return repository.save(oldObj);
     }
 
+    // Metodo de deletar técnico
+    public void delete(Integer id) {
+        Technician obj = findById(id);
+        if(obj.getCalled().size() > 0) {
+            throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
+        }
+        repository.deleteById(id);
+    }
+
     // Metodo para verificação de email e cpf existente
     private void validCpfAndEmail(TechnicianDTO objDTO) {
         Optional<Person> obj = personRepository.findByCpf(objDTO.getCpf());
