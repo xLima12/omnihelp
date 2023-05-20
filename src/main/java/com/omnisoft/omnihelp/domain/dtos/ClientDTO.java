@@ -7,12 +7,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.omnisoft.omnihelp.domain.Technician;
+import com.omnisoft.omnihelp.domain.Client;
 import com.omnisoft.omnihelp.domain.enums.Profile;
 
 import jakarta.validation.constraints.NotNull;
 
-public class TechnicianDTO implements Serializable {
+public class ClientDTO implements Serializable {
     
     private static final long serialVersionUID = 1L;
     // Atributos classe pessoa
@@ -30,12 +30,12 @@ public class TechnicianDTO implements Serializable {
     protected LocalDate createDate = LocalDate.now();
     
     // Constructors
-    public TechnicianDTO() {
+    public ClientDTO() {
         super();
-        addProfile(Profile.TECHNICIAN);
+        addProfile(Profile.CLIENT);
     }
 
-    public TechnicianDTO(Technician obj) {
+    public ClientDTO(Client obj) {
         super();
         this.id = obj.getId();
         this.name = obj.getName();
@@ -44,7 +44,7 @@ public class TechnicianDTO implements Serializable {
         this.password = obj.getPassword();
         this.profiles = obj.getProfiles().stream().map(p -> p.getCode()).collect(Collectors.toSet());
         this.createDate = obj.getCreateDate();
-        addProfile(Profile.TECHNICIAN);
+        addProfile(Profile.CLIENT);
     }
 
     // Metodos acessores
