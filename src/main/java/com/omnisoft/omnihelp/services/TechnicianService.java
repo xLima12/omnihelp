@@ -13,6 +13,7 @@ public class TechnicianService {
     @Autowired
     private TechnicianRepository repository;
 
+    // Metodo de busca por id
     public Technician findById(Integer id) {
         Optional<Technician> obj = repository.findById(id);
         return obj.orElse(null);
