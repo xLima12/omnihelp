@@ -1,5 +1,6 @@
 package com.omnisoft.omnihelp.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,17 @@ public class CalledService {
         return respository.save(newCalled(objDTO));
     }
 
+    // Metodo que chama a atualização de um chamado
+    public Called update(Integer id, @Valid CalledDTO objDTO) {
+        objDTO.setId(id);
+        // Verifica se o id é existente, caso não seja gera a exceção personalizada
+        Called oldObj = findById(id);
+        // Se for existente pega o chamado antigo, atualiza com as informações recebidas
+        oldObj = newCalled(objDTO);
+        // Salva no banco e retorna
+        return respository.save(oldObj);
+    }
+
     // Metodo de criação ou atualização de um novo chamado
     private Called newCalled(CalledDTO obj) {
         Technician technician = technicianService.findById(obj.getTechnician());
@@ -58,6 +70,11 @@ public class CalledService {
         if(obj.getId() != null) {
             // Se possuir um id atualiza o chamado
             called.setId(obj.getId());
+        }
+
+        // Verifica o status do chamado, caso seja fechado coloca a data.
+        if(obj.getStatus().equals(2)) {
+            called.setClosingDate(LocalDate.now());
         }
 
         // Se não possuir id cria um novo chamado

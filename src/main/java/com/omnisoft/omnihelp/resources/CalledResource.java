@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,7 @@ public class CalledResource {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    // Metodo post para criar um novo chamado
     @PostMapping
     public ResponseEntity<CalledDTO> create(@Valid @RequestBody CalledDTO objDTO) {
         // Cria um novo chamado no BD
@@ -50,6 +52,15 @@ public class CalledResource {
         URI uri = ServletUriComponentsBuilder.
             fromCurrentRequestUri().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    // Metodo put para atualizar um chamado
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CalledDTO> update(@PathVariable Integer id,@Valid @RequestBody CalledDTO objDTO) {
+        // Atualiza o chamado
+        Called newObj = service.update(id, objDTO);
+        // Retorna o chamado atualizado
+        return ResponseEntity.ok().body(new CalledDTO(newObj));
     }
 
 }
