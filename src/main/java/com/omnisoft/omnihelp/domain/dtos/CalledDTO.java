@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.omnisoft.omnihelp.domain.Called;
 
+import jakarta.validation.constraints.NotNull;
+
 public class CalledDTO implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -16,11 +18,17 @@ public class CalledDTO implements Serializable {
     private LocalDate openingDate = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate closingDate;
+    @NotNull(message = "O campo PRIORIDADE é obrigatório.")
     private Integer priority;
+    @NotNull(message = "O campo STATUS é obrigatório.")
     private Integer status;
+    @NotNull(message = "O campo TÍTULO é obrigatório.")
     private String title;
+    @NotNull(message = "O campo OBSERVAÇÕES é obrigatório.")
     private String comments;
+    @NotNull(message = "O campo TÉCNICO é obrigatório.")
     private Integer technician;
+    @NotNull(message = "O campo CLIENTE é obrigatório.")
     private Integer client;
     private String nameTechnician;
     private String nameClient;
