@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.omnisoft.omnihelp.services.exceptions.DataIntegrityViolationException;
 import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintViolationException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class ResourcesExceptionHandler {

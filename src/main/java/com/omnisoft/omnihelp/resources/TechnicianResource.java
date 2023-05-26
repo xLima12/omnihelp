@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import com.omnisoft.omnihelp.domain.Technician;
 import com.omnisoft.omnihelp.domain.dtos.TechnicianDTO;
 import com.omnisoft.omnihelp.services.TechnicianService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 // EndPoint para técnicos
 @RestController
@@ -48,6 +49,7 @@ public class TechnicianResource {
     }
 
     // Metodo Post para criar um novo técnico
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO objDTO) {
         Technician newObj = service.create(objDTO);
@@ -57,6 +59,7 @@ public class TechnicianResource {
     }
 
     // Metodo de atualização do técnico
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<TechnicianDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicianDTO objDTO) {
         Technician obj = service.update(id, objDTO);
@@ -64,6 +67,7 @@ public class TechnicianResource {
     }
 
     // Metodo de delete
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<TechnicianDTO> delete(@PathVariable Integer id) {
         service.delete(id);

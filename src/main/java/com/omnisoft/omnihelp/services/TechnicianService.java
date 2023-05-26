@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.omnisoft.omnihelp.domain.Person;
@@ -14,7 +15,7 @@ import com.omnisoft.omnihelp.repositories.TechnicianRepository;
 import com.omnisoft.omnihelp.services.exceptions.DataIntegrityViolationException;
 import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @Service
 public class TechnicianService {
@@ -22,6 +23,8 @@ public class TechnicianService {
     private TechnicianRepository repository;
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+	private BCryptPasswordEncoder encoder;
 
     // Metodo de busca por id
     public Technician findById(Integer id) {
@@ -37,6 +40,7 @@ public class TechnicianService {
     // Metodo para criação de um novo técnico
     public Technician create(TechnicianDTO objDTO) {
         objDTO.setId(null);
+        objDTO.setPassword(encoder.encode(objDTO.getPassword()));
         validCpfAndEmail(objDTO);
         Technician newObj = new Technician(objDTO);
         return repository.save(newObj);

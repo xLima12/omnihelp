@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.omnisoft.omnihelp.domain.Client;
 import com.omnisoft.omnihelp.domain.enums.Profile;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 
 public class ClientDTO implements Serializable {
     

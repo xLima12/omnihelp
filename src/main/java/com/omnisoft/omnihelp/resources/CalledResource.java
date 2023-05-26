@@ -19,7 +19,7 @@ import com.omnisoft.omnihelp.domain.Called;
 import com.omnisoft.omnihelp.domain.dtos.CalledDTO;
 import com.omnisoft.omnihelp.services.CalledService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/called")

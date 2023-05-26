@@ -16,13 +16,13 @@ import com.omnisoft.omnihelp.domain.enums.Status;
 import com.omnisoft.omnihelp.repositories.CalledRespository;
 import com.omnisoft.omnihelp.services.exceptions.ObjectNotFoundException;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @Service
 public class CalledService {
     
     @Autowired
-    private CalledRespository respository;
+    private CalledRespository repository;
     @Autowired
     private TechnicianService technicianService;
     @Autowired
@@ -30,13 +30,13 @@ public class CalledService {
 
     // Retorna o chamado por id
     public Called findById(Integer id) {
-        Optional<Called> obj = respository.findById(id);
+        Optional<Called> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! " + id));
     }
 
     // Retorna lista com todos os chamados
     public List<Called> findAll() {
-        return respository.findAll();
+        return repository.findAll();
     }
 
     // Metodo que chama a criação de um novo chamado
@@ -45,7 +45,7 @@ public class CalledService {
             Recebe o objDTO e manda para a criação do novo chamado, 
             quando é retornado o novo chamado criado, ele salva e já retorna o novo chamado.
         */
-        return respository.save(newCalled(objDTO));
+        return repository.save(newCalled(objDTO));
     }
 
     // Metodo que chama a atualização de um chamado
@@ -56,7 +56,7 @@ public class CalledService {
         // Se for existente pega o chamado antigo, atualiza com as informações recebidas
         oldObj = newCalled(objDTO);
         // Salva no banco e retorna
-        return respository.save(oldObj);
+        return repository.save(oldObj);
     }
 
     // Metodo de criação ou atualização de um novo chamado

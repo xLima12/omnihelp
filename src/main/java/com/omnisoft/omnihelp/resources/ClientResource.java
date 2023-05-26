@@ -20,7 +20,7 @@ import com.omnisoft.omnihelp.domain.Client;
 import com.omnisoft.omnihelp.domain.dtos.ClientDTO;
 import com.omnisoft.omnihelp.services.ClientService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 // EndPoint para técnicos
 @RestController

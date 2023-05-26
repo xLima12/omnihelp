@@ -3,6 +3,7 @@ package com.omnisoft.omnihelp.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.omnisoft.omnihelp.domain.Called;
@@ -24,18 +25,24 @@ public class DBServices {
 	private ClientRepository clientRepository;
 	@Autowired
 	private CalledRespository calledRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
     public void instanceDB() {
-        Technician tec1 = new Technician(null, "Valdir Cezar", "164.132.860-67", "teste@teste.com", "123");
+        Technician tec1 = new Technician(null, "Felipe Lima", "164.132.860-67", "felipe@mail.com", encoder.encode("123"));
 		tec1.addProfile(Profile.ADMIN);
 
-		Client cli1 = new Client(null, "Felipe Lima", "42625330856", "felipe@felipe.com", "123");
+		Client cli1 = new Client(null, "Júlia Lima", "344.003.070-93", "julia@mail.com", encoder.encode("123"));
+		Client cli2 = new Client(null, "Thiago Lima", "476.334.940-69", "thiago@mail.com", encoder.encode("123"));
 
 		Called c1 = new Called(null, Priority.MEDIUM, Status.PROGESS, "Chamado 01", "Primeiro Chamado", tec1, cli1);
+		Called c2 = new Called(null, Priority.MEDIUM, Status.PROGESS, "Chamado 02", "Segundo Chamado", tec1, cli2);
 
 		technicianRepository.saveAll(Arrays.asList(tec1));
 		clientRepository.saveAll(Arrays.asList(cli1));
+		clientRepository.saveAll(Arrays.asList(cli2));
 		calledRepository.saveAll(Arrays.asList(c1));
+		calledRepository.saveAll(Arrays.asList(c2));
     }
 
 }
