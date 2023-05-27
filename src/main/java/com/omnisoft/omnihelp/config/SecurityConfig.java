@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,10 +20,12 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.omnisoft.omnihelp.security.JWTAuthenticationFilter;
+import com.omnisoft.omnihelp.security.JWTAuthorizationFilter;
 import com.omnisoft.omnihelp.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
@@ -43,10 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             http.headers(headers -> headers.frameOptions().disable());
         }
 
-        http.cors(withDefaults())
+        http.cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
-                //.addFilter(new JWTAuthorizationFilter(null, jwtUtil, userDetailsService))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService))
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeRequests(requests -> requests.antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated());
     }

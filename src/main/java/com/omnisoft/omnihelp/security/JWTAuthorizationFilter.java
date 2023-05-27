@@ -19,7 +19,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private JWTUtil jwtUtil;
     private UserDetailsService userDetailsService;
 
-
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil,
             UserDetailsService userDetailsService) {
         super(authenticationManager);
@@ -46,6 +45,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             UserDetails details = userDetailsService.loadUserByUsername(username);
             return new UsernamePasswordAuthenticationToken(details.getUsername(), null, details.getAuthorities());
         }
+        // Fazer o tratamento de exceção
         return null;
     }
     
